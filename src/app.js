@@ -8,6 +8,8 @@ class App {
 
   constructor() {
     this.app = express();
+
+    this.connectToTheDatabase();
     this.initializeMiddlewares();
     this.server = http.createServer(this.app);
   }
@@ -24,6 +26,16 @@ class App {
 
   getServer() {
     return this.server;
+  }
+
+  connectToTheDatabase() {
+    const { MONGO_USER, MONGO_PASSWORD, MONGO_PATH } = process.env;
+    mongoose.connect(
+      `mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}${MONGO_PATH}`,
+      {
+        useNewUrlParser: true,
+      }
+    );
   }
 }
 
