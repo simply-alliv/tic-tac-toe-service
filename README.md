@@ -1,10 +1,10 @@
-# Real-time Tic-Tac-Toe Node App
+# Tic-Tac-Toe Service
 
 Heavily inspired by Parth Patel's [repository](https://github.com/myvsparth/react-js-tic-tac-toe). Modified to work with express and ES6 syntax.
  
-A Node application that uses sockets to enable a real-time game between two users on different devices.
+A [Node.js](https://nodejs.org/)/[Express](https://expressjs.com/) service that uses [socket.io](https://socket.io/)'s API to enable a real-time game between two users on different devices.
 
-Any socket client can connect to this server.
+Any socket.io client can connect to this server. Enabling an optimal separation of concerns, an improvement in maintainability, and the freedom for frontend developers to focus on the UI and UX of the client.
 
 ## How it works
 
@@ -17,22 +17,26 @@ Any socket client can connect to this server.
 
 ### Technical
 
-The client can send events and listen to responses.
+The service can emit events and listen to responses through socket.io.
 
-The server's socket has 4 events that it can listen to:
+The service's socket has 5 events that it listens to:
 
 - checkUserDetail
 - getOpponents
-- selectOpponents
+- selectOpponent
+- selectCell
 - disconnect
 
-Subsequently, it has 8 more responses it can emit:
+Subsequently, it has 11 more responses it can emit:
 
+- connected
+- checkUserDetailResponse
 - getOpponentsResponse
-- newOpponentAdded (broadcast)
-- opponentLeft (to gameId socket)
 - opponentDisconnected
 - excludePlayers
+- newOpponentAdded (broadcast)
 - gameStarted (to gameId socket)
+- selectCellResponse (to gameId socket)
 - gameInterval (to gameId socket)
 - nextGameData (to gameId socket)
+- opponentLeft (to gameId socket)
