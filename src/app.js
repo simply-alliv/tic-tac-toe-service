@@ -35,6 +35,7 @@ class App {
       `mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}${MONGO_PATH}`,
       {
         useNewUrlParser: true,
+        useUnifiedTopology: true
       }
     );
   }
