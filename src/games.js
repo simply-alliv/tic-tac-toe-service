@@ -12,7 +12,9 @@ class Games {
   gameBetweenInterval = null;
 
   constructor(server) {
-    this.io = socketIO(server);
+    this.io = socketIO(server, {
+      cors: { origin: process.env.CORS_ORIGIN }
+    });
     this.initializeSocketConnection();
   }
 
@@ -175,13 +177,13 @@ class Games {
     for (let i = 0; i < winCombinationMatrix.length; i++) {
       var tempComb =
         this.games[data.gameId].playboard[winCombinationMatrix[i][0][0]][
-          winCombinationMatrix[i][0][1]
+        winCombinationMatrix[i][0][1]
         ] +
         this.games[data.gameId].playboard[winCombinationMatrix[i][1][0]][
-          winCombinationMatrix[i][1][1]
+        winCombinationMatrix[i][1][1]
         ] +
         this.games[data.gameId].playboard[winCombinationMatrix[i][2][0]][
-          winCombinationMatrix[i][2][1]
+        winCombinationMatrix[i][2][1]
         ];
       if (tempComb === "xxx" || tempComb === "ooo") {
         this.games[data.gameId].game_winner = this.games[

@@ -16,7 +16,7 @@ class App {
   }
 
   initializeMiddlewares() {
-    this.app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+    this.app.use(cors({ origin: process.env.CORS_ORIGIN, credentials: true }));
   }
 
   listen() {
